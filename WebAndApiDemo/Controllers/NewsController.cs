@@ -173,9 +173,17 @@ namespace WebAndApiDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var news = await _context.News.FindAsync(id);
-            _context.News.Remove(news);
+            // Eager Load news to delete...
+            var newsToDelete = await _context.News
+                .Include(c => c.NewsCategoryAssignments)    // EF automatically delete category assignments from db.
+                    .ThenInclude(c => c.NewsCategory)
+                .SingleAsync(n => n.ID == id);
+
+            // Delete and save change to database..
+            _context.News.Remove(newsToDelete);
             await _context.SaveChangesAsync();
+
+            // Redirect to index page..
             return RedirectToAction(nameof(Index));
         }
 
