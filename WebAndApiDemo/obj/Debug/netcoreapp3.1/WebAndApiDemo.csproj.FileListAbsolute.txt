@@ -160,3 +160,10 @@ C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netc
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.csproj.CopyComplete
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.dll
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.pdb
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.deps.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.runtimeconfig.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.runtimeconfig.dev.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.dll
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.pdb
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.Views.dll
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.Views.pdb

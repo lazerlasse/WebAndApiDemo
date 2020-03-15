@@ -4,12 +4,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Rediger Nyhed</h1>
 
-<h4>News</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
@@ -25,20 +24,44 @@
             </div>
             <div class="form-group">
                 <label asp-for="Published" class="control-label"></label>
-                <input asp-for="Published" class="form-control" />
-                <span asp-validation-for="Published" class="text-danger"></span>
+                <input type="datetime" asp-for="Published" disabled class="form-control"/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<WebAndApiDemo.Models.ViewModels.ChosenNewsCategoryData> categories = ViewBag.Categories;
+
+                            foreach (var category in categories)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedCategories"
+                                           value="@category.CategoryID"
+                                           @(Html.Raw(category.IsChecked ? "checked=\"checked\"" : "")) />
+                                    @category.Titel
+                                @:</td>
+                            }
+                        @:</tr>
+                        }
+                    </table>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Gem" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Tilbage til oversigten</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

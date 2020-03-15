@@ -9,14 +9,17 @@ namespace WebAndApiDemo.Models
 {
 	public class News
 	{
-		[Key]
+		[Key, Display(Name = "Nyheds ID")]
 		public int ID { get; set; }
 
-		[Required]
+		[Required, Display(Name = "Overskrift")]
 		public string Titel { get; set; }
+
+		[Required, Display(Name = "Indhold")]
 		public string Content { get; set; }
 
-		[DisplayFormat(DataFormatString = "{0:/dd/MM/yyyy}", ApplyFormatInEditMode = true), Required]
+		[DataType(DataType.DateTime), Display(Name = "Udgivet")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:MM}", ApplyFormatInEditMode = true), Required]
 		public DateTime Published { get; set; }
 
 		// Navigation properties.

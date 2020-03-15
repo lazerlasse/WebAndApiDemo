@@ -28,13 +28,15 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Published)
         </dd>
-        <dt class="col-sm-2">
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-12">
             @Html.DisplayNameFor(model => model.NewsCategoryAssignments)
         </dt>
         @foreach (var item in Model.NewsCategoryAssignments)
         {
-            <dd>
-                @item.NewsCategory.
+            <dd class="col-sm-12">
+                @item.NewsCategory.CategorName
             </dd>
         }
     </dl>

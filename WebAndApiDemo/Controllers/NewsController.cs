@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAndApiDemo.Data;
 using WebAndApiDemo.Models;
-using WebAndApiDemo.ViewModels;
+using WebAndApiDemo.Models.ViewModels;
 
 namespace WebAndApiDemo.Controllers
 {
@@ -36,9 +36,7 @@ namespace WebAndApiDemo.Controllers
                 return NotFound();
             }
 
-            var news = new News();
-
-            news = await _context.News
+            var news = await _context.News
                 .Include(category => category.NewsCategoryAssignments)
                     .ThenInclude(category => category.NewsCategory)
                     .AsNoTracking()
@@ -82,11 +80,19 @@ namespace WebAndApiDemo.Controllers
                 return NotFound();
             }
 
-            var news = await _context.News.FindAsync(id);
+            var news = await _context.News
+                .Include(c => c.NewsCategoryAssignments)
+                    .ThenInclude(c => c.NewsCategory)
+                .AsNoTracking().FirstOrDefaultAsync(c => c.ID == id);
+
             if (news == null)
             {
                 return NotFound();
             }
+
+            // Populate categories list to choose category from.
+            PopulateAssignedNewsCategoryData(news);
+
             return View(news);
         }
 
@@ -95,34 +101,52 @@ namespace WebAndApiDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Titel,Content,Published")] News news)
+        public async Task<IActionResult> Edit(int? id, string[] selectedCategories)
         {
-            if (id != news.ID)
+            // Return not found if id == null...
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // load news from id to update...
+            var newsToUpdate = await _context.News
+                .Include(c => c.NewsCategoryAssignments)
+                    .ThenInclude(c => c.NewsCategory)
+                .FirstOrDefaultAsync(c => c.ID == id);
+
+            // Try update model and save changes...
+            if (await TryUpdateModelAsync<News>(
+                newsToUpdate,
+                "",
+                n => n.Titel, n => n.Content))
             {
+                // Update selected categories.
+                UpdateAssignedNewsCategories(selectedCategories, newsToUpdate);
+
+                // Try saving changes to database..
                 try
                 {
-                    _context.Update(news);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException /* ex */)
                 {
-                    if (!NewsExists(news.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
                 }
+
+                // Update model and save changes succeded and return to index...
                 return RedirectToAction(nameof(Index));
             }
-            return View(news);
+
+            // Update and populate selected news categories...
+            UpdateAssignedNewsCategories(selectedCategories, newsToUpdate);
+            PopulateAssignedNewsCategoryData(newsToUpdate);
+
+            // Return view...
+            return View(newsToUpdate);
         }
 
         // GET: News/Delete/5
@@ -135,6 +159,7 @@ namespace WebAndApiDemo.Controllers
 
             var news = await _context.News
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (news == null)
             {
                 return NotFound();
@@ -157,6 +182,57 @@ namespace WebAndApiDemo.Controllers
         private bool NewsExists(int id)
         {
             return _context.News.Any(e => e.ID == id);
+        }
+
+        // Method for populating assigned news categories...
+        private void PopulateAssignedNewsCategoryData(News news)
+        {
+            var allNewsCategories = _context.NewsCategory;
+            var newsCategories = new HashSet<int>(news.NewsCategoryAssignments.Select(c => c.NewsCategoryID));
+            var viewModel = new List<ChosenNewsCategoryData>();
+            foreach (var category in allNewsCategories)
+            {
+                viewModel.Add(new ChosenNewsCategoryData
+                {
+                    CategoryID = category.ID,
+                    Titel = category.CategorName,
+                    IsChecked = newsCategories.Contains(category.ID)
+                });
+            }
+            ViewData["Categories"] = viewModel;
+        }
+
+        // This method updates the assigned categories for selected news..
+        private void UpdateAssignedNewsCategories(string[] selectedCategories, News newsToUpdate)
+        {
+            if (selectedCategories == null)
+            {
+                newsToUpdate.NewsCategoryAssignments = new List<NewsCategoryAssignment>();
+                return;
+            }
+
+            var selectedCategoriesHS = new HashSet<string>(selectedCategories);
+            var newsCategories = new HashSet<int>
+                (newsToUpdate.NewsCategoryAssignments.Select(c => c.NewsCategory.ID));
+            foreach (var category in _context.NewsCategory)
+            {
+                if (selectedCategoriesHS.Contains(category.ID.ToString()))
+                {
+                    if (!newsCategories.Contains(category.ID))
+                    {
+                        newsToUpdate.NewsCategoryAssignments.Add(new NewsCategoryAssignment { NewsID = newsToUpdate.ID, NewsCategoryID = category.ID });
+                    }
+                }
+                else
+                {
+
+                    if (newsCategories.Contains(category.ID))
+                    {
+                        NewsCategoryAssignment categoryToRemove = newsToUpdate.NewsCategoryAssignments.FirstOrDefault(c => c.NewsCategoryID == category.ID);
+                        _context.Remove(categoryToRemove);
+                    }
+                }
+            }
         }
     }
 }
