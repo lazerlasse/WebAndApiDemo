@@ -9,7 +9,7 @@
 <h4>Nyhed</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -24,13 +24,38 @@
             </div>
             <div class="form-group">
                 <label asp-for="Published" class="control-label"></label>
-                <input asp-for="Published" class="form-control" />
+                <input type="datetime" asp-for="Published" class="form-control" />
                 <span asp-validation-for="Published" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Gem" class="btn btn-primary" />
-            </div>
-        </form>
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<WebAndApiDemo.Models.ViewModels.ChosenNewsCategoryData> categories = ViewBag.Categories;
+
+                            foreach (var category in categories)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedCategories"
+                                           value="@category.CategoryID"
+                                           @(Html.Raw(category.IsChecked ? "checked=\"checked\"" : "")) />
+                                    @category.Titel
+                                @:</td>
+                            }
+                        @:</tr>
+                        }
+                    </table>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Gem" class="btn btn-primary" />
+                </div>
+            </form>
     </div>
 </div>
 

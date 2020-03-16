@@ -53,7 +53,18 @@ namespace WebAndApiDemo.Controllers
         // GET: News/Create
         public IActionResult Create()
         {
-            return View();
+            // Create new news model and set DateTime.now and create new list of categories.
+            var news = new News 
+            {
+                Published = DateTime.Now,
+                NewsCategoryAssignments = new List<NewsCategoryAssignment>()
+            };
+
+            // Populate category data for checkboxes.
+            PopulateAssignedNewsCategoryData(news);
+
+            // Return view..
+            return View(news);
         }
 
         // POST: News/Create
@@ -61,14 +72,28 @@ namespace WebAndApiDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Titel,Content,Published")] News news)
+        public async Task<IActionResult> Create([Bind("ID,Titel,Content,Published")] News news, string[] selectedCategories)
         {
+            if (selectedCategories != null)
+            {
+                news.NewsCategoryAssignments = new List<NewsCategoryAssignment>();
+
+                // Loop through selected categories and add them to the list..
+                foreach (var category in selectedCategories)
+                {
+                    var categoryToAdd = new NewsCategoryAssignment { NewsID = news.ID, NewsCategoryID = int.Parse(category) };
+                    news.NewsCategoryAssignments.Add(categoryToAdd);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(news);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            PopulateAssignedNewsCategoryData(news);
             return View(news);
         }
 
