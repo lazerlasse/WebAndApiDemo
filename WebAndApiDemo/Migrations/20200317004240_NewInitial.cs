@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAndApiDemo.Migrations
 {
-    public partial class Models : Migration
+    public partial class NewInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace WebAndApiDemo.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titel = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
+                    Titel = table.Column<string>(nullable: false),
+                    Content = table.Column<string>(nullable: false),
                     Published = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -26,13 +26,13 @@ namespace WebAndApiDemo.Migrations
                 name: "NewsCategory",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    CategoryID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategorName = table.Column<string>(nullable: true)
+                    CategoryName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NewsCategory", x => x.ID);
+                    table.PrimaryKey("PK_NewsCategory", x => x.CategoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,7 +51,7 @@ namespace WebAndApiDemo.Migrations
                         name: "FK_NewsCategoryAssignment_NewsCategory_NewsCategoryID",
                         column: x => x.NewsCategoryID,
                         principalTable: "NewsCategory",
-                        principalColumn: "ID",
+                        principalColumn: "CategoryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_NewsCategoryAssignment_News_NewsID",

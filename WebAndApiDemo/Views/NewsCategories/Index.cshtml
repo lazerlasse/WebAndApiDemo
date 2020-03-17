@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<WebAndApiDemo.Models.NewsCategory>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kategorier";
 }
 
-<h1>Index</h1>
+<h1>Kategori oversigt</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Opret ny kategori</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CategorName)
+                @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th></th>
         </tr>
@@ -22,12 +22,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CategorName)
+                @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CategoryID">Rediger</a> |
+                <a asp-action="Details" asp-route-id="@item.CategoryID">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.CategoryID">Slet</a>
             </td>
         </tr>
 }

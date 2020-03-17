@@ -24,6 +24,7 @@ namespace WebAndApiDemo.Models
 		public DateTime Published { get; set; }
 
 		// Navigation properties.
+		[Display(Name = "Nyheds kategorier")]
 		public ICollection<NewsCategoryAssignment> NewsCategoryAssignments { get; set; }
 	}
 }

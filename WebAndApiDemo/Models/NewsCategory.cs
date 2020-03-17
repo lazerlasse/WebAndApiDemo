@@ -5,12 +5,14 @@ namespace WebAndApiDemo.Models
 {
 	public class NewsCategory
 	{
-		public int ID { get; set; }
+		[Key]
+		public int CategoryID { get; set; }
 
-		[Required]
-		public string CategorName { get; set; }
+		[Required, Display(Name = "Navn")]
+		public string CategoryName { get; set; }
 
 		// Navigation properties.
+		[Display(Name = "Nyheder i denne kategori")]
 		public ICollection<NewsCategoryAssignment> NewsCategoryAssignments { get; set; }
 	}
 }

@@ -227,9 +227,9 @@ namespace WebAndApiDemo.Controllers
             {
                 viewModel.Add(new ChosenNewsCategoryData
                 {
-                    CategoryID = category.ID,
-                    Titel = category.CategorName,
-                    IsChecked = newsCategories.Contains(category.ID)
+                    CategoryID = category.CategoryID,
+                    Titel = category.CategoryName,
+                    IsChecked = newsCategories.Contains(category.CategoryID)
                 });
             }
             ViewData["Categories"] = viewModel;
@@ -246,22 +246,22 @@ namespace WebAndApiDemo.Controllers
 
             var selectedCategoriesHS = new HashSet<string>(selectedCategories);
             var newsCategories = new HashSet<int>
-                (newsToUpdate.NewsCategoryAssignments.Select(c => c.NewsCategory.ID));
+                (newsToUpdate.NewsCategoryAssignments.Select(c => c.NewsCategory.CategoryID));
             foreach (var category in _context.NewsCategory)
             {
-                if (selectedCategoriesHS.Contains(category.ID.ToString()))
+                if (selectedCategoriesHS.Contains(category.CategoryID.ToString()))
                 {
-                    if (!newsCategories.Contains(category.ID))
+                    if (!newsCategories.Contains(category.CategoryID))
                     {
-                        newsToUpdate.NewsCategoryAssignments.Add(new NewsCategoryAssignment { NewsID = newsToUpdate.ID, NewsCategoryID = category.ID });
+                        newsToUpdate.NewsCategoryAssignments.Add(new NewsCategoryAssignment { NewsID = newsToUpdate.ID, NewsCategoryID = category.CategoryID });
                     }
                 }
                 else
                 {
 
-                    if (newsCategories.Contains(category.ID))
+                    if (newsCategories.Contains(category.CategoryID))
                     {
-                        NewsCategoryAssignment categoryToRemove = newsToUpdate.NewsCategoryAssignments.FirstOrDefault(c => c.NewsCategoryID == category.ID);
+                        NewsCategoryAssignment categoryToRemove = newsToUpdate.NewsCategoryAssignments.FirstOrDefault(c => c.NewsCategoryID == category.CategoryID);
                         _context.Remove(categoryToRemove);
                     }
                 }

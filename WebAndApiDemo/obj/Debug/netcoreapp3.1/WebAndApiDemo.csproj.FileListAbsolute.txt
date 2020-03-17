@@ -1,7 +1,14 @@
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.exe
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.exe
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.deps.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.runtimeconfig.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.runtimeconfig.dev.json
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.dll
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.pdb
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.Views.dll
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.Views.pdb
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -126,7 +133,6 @@ C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netc
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.csprojAssemblyReference.cache
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\staticwebassets\WebAndApiDemo.StaticWebAssets.Manifest.cache
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\staticwebassets\WebAndApiDemo.StaticWebAssets.xml
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.MvcApplicationPartsAssemblyInfo.cache
@@ -160,10 +166,4 @@ C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netc
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.csproj.CopyComplete
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.dll
 C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.pdb
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.deps.json
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.runtimeconfig.json
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.runtimeconfig.dev.json
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.dll
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.pdb
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.Views.dll
-C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\bin\Debug\netcoreapp3.1\WebAndApiDemo.Views.pdb
+C:\Users\brand\OneDrive\Programmering\WebAndApiDemo\WebAndApiDemo\obj\Debug\netcoreapp3.1\WebAndApiDemo.csprojAssemblyReference.cache

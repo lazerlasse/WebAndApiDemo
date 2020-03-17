@@ -22,7 +22,10 @@ namespace WebAndApiDemo.Controllers
         // GET: NewsCategories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.NewsCategory.ToListAsync());
+            var categories = _context.NewsCategory
+                .AsNoTracking();
+
+            return View(await categories.ToListAsync());
         }
 
         // GET: NewsCategories/Details/5
@@ -34,7 +37,9 @@ namespace WebAndApiDemo.Controllers
             }
 
             var newsCategory = await _context.NewsCategory
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.CategoryID == id);
+
             if (newsCategory == null)
             {
                 return NotFound();
@@ -73,7 +78,10 @@ namespace WebAndApiDemo.Controllers
                 return NotFound();
             }
 
-            var newsCategory = await _context.NewsCategory.FindAsync(id);
+            var newsCategory = await _context.NewsCategory
+                .AsNoTracking()
+                .FirstOrDefaultAsync(i => i.CategoryID == id);
+
             if (newsCategory == null)
             {
                 return NotFound();
@@ -88,7 +96,7 @@ namespace WebAndApiDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,CategorName")] NewsCategory newsCategory)
         {
-            if (id != newsCategory.ID)
+            if (id != newsCategory.CategoryID)
             {
                 return NotFound();
             }
@@ -102,7 +110,7 @@ namespace WebAndApiDemo.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NewsCategoryExists(newsCategory.ID))
+                    if (!NewsCategoryExists(newsCategory.CategoryID))
                     {
                         return NotFound();
                     }
@@ -125,7 +133,8 @@ namespace WebAndApiDemo.Controllers
             }
 
             var newsCategory = await _context.NewsCategory
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.CategoryID == id);
+
             if (newsCategory == null)
             {
                 return NotFound();
@@ -139,15 +148,19 @@ namespace WebAndApiDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var newsCategory = await _context.NewsCategory.FindAsync(id);
+            var newsCategory = await _context.NewsCategory
+                .Include(c => c.NewsCategoryAssignments)
+                .SingleAsync(i => i.CategoryID == id);
+
             _context.NewsCategory.Remove(newsCategory);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool NewsCategoryExists(int id)
         {
-            return _context.NewsCategory.Any(e => e.ID == id);
+            return _context.NewsCategory.Any(e => e.CategoryID == id);
         }
     }
 }

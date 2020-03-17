@@ -1,24 +1,24 @@
 ﻿@model WebAndApiDemo.Models.NewsCategory
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Vis kategori";
 }
 
-<h1>Details</h1>
+<h1>Kategori</h1>
 
 <div>
     <h4>NewsCategory</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategorName)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategorName)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.CategoryID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

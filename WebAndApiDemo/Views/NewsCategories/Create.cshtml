@@ -1,31 +1,30 @@
 ﻿@model WebAndApiDemo.Models.NewsCategory
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Opret kategori";
 }
 
-<h1>Create</h1>
+<h1>Opret kategori</h1>
 
-<h4>NewsCategory</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CategorName" class="control-label"></label>
-                <input asp-for="CategorName" class="form-control" />
-                <span asp-validation-for="CategorName" class="text-danger"></span>
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Gem" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Tilbage til kategori oversigten</a>
 </div>
 
 @section Scripts {

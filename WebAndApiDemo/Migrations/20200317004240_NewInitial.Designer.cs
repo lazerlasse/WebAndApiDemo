@@ -10,8 +10,8 @@ using WebAndApiDemo.Data;
 namespace WebAndApiDemo.Migrations
 {
     [DbContext(typeof(WebAndApiDemoContext))]
-    [Migration("20200306161748_Models")]
-    partial class Models
+    [Migration("20200317004240_NewInitial")]
+    partial class NewInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,12 +29,14 @@ namespace WebAndApiDemo.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Published")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Titel")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -44,15 +46,16 @@ namespace WebAndApiDemo.Migrations
 
             modelBuilder.Entity("WebAndApiDemo.Models.NewsCategory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CategoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategorName")
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("CategoryID");
 
                     b.ToTable("NewsCategory");
                 });
