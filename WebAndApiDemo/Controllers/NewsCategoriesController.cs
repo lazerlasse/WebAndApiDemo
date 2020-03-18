@@ -59,7 +59,7 @@ namespace WebAndApiDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CategorName")] NewsCategory newsCategory)
+        public async Task<IActionResult> Create([Bind("ID,CategoryName")] NewsCategory newsCategory)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace WebAndApiDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CategorName")] NewsCategory newsCategory)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CategoryName")] NewsCategory newsCategory)
         {
             if (id != newsCategory.CategoryID)
             {
